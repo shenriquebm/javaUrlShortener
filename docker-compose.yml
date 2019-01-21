@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mysql:
+    build:
+      context: docker/persistence
+      dockerfile: Dockerfile
+    image: url-shortener-mysql
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=root123
+      - MYSQL_DATABASE=url_shortener
+      - MYSQL_USER=url_shortener
+      - MYSQL_PASSWORD=123456
+    volumes:
+      - /data/mysql
+
+  docker-java-app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: url-shortener
+    ports:
+      - 1992:1992
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    volumes:
+      - /data/url-shortener-app
