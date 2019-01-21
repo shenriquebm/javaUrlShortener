@@ -30,7 +30,7 @@ The rest is downloaded from the build scripts.
 To build the application, just run the following commands:
 
 ```$xslt
-$ ./gradlew clean build
+$ gradle clean build
 $ docker-compose build
 $ docker-compose up
 ```

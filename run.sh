@@ -1,3 +1,3 @@
-./gradlew clean build
+gradle clean build
 docker-compose build
 docker-compose up
